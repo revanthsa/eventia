@@ -36,14 +36,12 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'cloudinary_storage',
     'django.contrib.staticfiles',
     'core',
     'crispy_forms',
     'phonenumber_field',
     'django_email_verification',
     'django_extensions',
-    'cloudinary',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -56,7 +54,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'eventia.urls'
@@ -83,24 +80,24 @@ WSGI_APPLICATION = 'eventia.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
-     'default': {
-         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-         'NAME': 'ddb3a5n79ritlp',
-         'USER': 'ppmjpaxgydscti',
-         'PASSWORD': 'e1ea1c3224079c6d993dee0b5acb3e26a48ec5ac0e18e2dd77703a72a43398e1',
-         'HOST': 'ec2-52-45-73-150.compute-1.amazonaws.com',
-         'PORT': '5432',
-
-     }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+
+# DATABASES = {
+#      'default': {
+#          'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#          'NAME': 'ddb3a5n79ritlp',
+#          'USER': 'ppmjpaxgydscti',
+#          'PASSWORD': 'e1ea1c3224079c6d993dee0b5acb3e26a48ec5ac0e18e2dd77703a72a43398e1',
+#          'HOST': 'ec2-52-45-73-150.compute-1.amazonaws.com',
+#          'PORT': '5432',
+
+#      }
+# }
 
 
 # Password validation
@@ -143,8 +140,6 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Custom User Model
 AUTH_USER_MODEL = 'core.User'
@@ -194,10 +189,3 @@ GRAPH_MODELS = {
     'all_applications':True,
     'group_models':True,
 }
-
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'hftbmm5yd',
-    'API_KEY': '178755344991667',
-    'API_SECRET': '9ivs-otZhCQpRaJ87S5ArLKiG2A',
-}
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
