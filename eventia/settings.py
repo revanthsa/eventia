@@ -36,12 +36,14 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
     'core',
     'crispy_forms',
     'phonenumber_field',
     'django_email_verification',
     'django_extensions',
+    'cloudinary',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -192,3 +194,10 @@ GRAPH_MODELS = {
     'all_applications':True,
     'group_models':True,
 }
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'hftbmm5yd',
+    'API_KEY': '178755344991667',
+    'API_SECRET': '9ivs-otZhCQpRaJ87S5ArLKiG2A',
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
