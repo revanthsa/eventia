@@ -160,29 +160,35 @@ PHONENUMBER_DEFAULT_REGION = 'IN'
 
 # Mail Server
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = '***REMOVED***'
+# EMAIL_HOST = '***REMOVED***'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
+# EMAIL_HOST_USER = '***REMOVED***'
 EMAIL_HOST_USER = '***REMOVED***'
+# EMAIL_HOST_PASSWORD = '***REMOVED***'
 EMAIL_HOST_PASSWORD = '***REMOVED***'
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
+# EMAIL_USE_SSL = False
 
 
 def verified_callback(user):
     user.is_active = True
 
 EMAIL_VERIFIED_CALLBACK = verified_callback
-EMAIL_SERVER = '***REMOVED***'
+# EMAIL_SERVER = '***REMOVED***'
+EMAIL_SERVER = 'smtp.gmail.com'
 EMAIL_PORT = 587
+# EMAIL_ADDRESS = '***REMOVED***'
 EMAIL_ADDRESS = '***REMOVED***'
+# EMAIL_FROM_ADDRESS = '***REMOVED***'
 EMAIL_FROM_ADDRESS = '***REMOVED***'
+# EMAIL_PASSWORD = '***REMOVED***'
 EMAIL_PASSWORD = '***REMOVED***'
 EMAIL_MAIL_SUBJECT = 'Confirm your email'
 EMAIL_MAIL_HTML = 'mail_body.html'
 EMAIL_PAGE_TEMPLATE = 'confirm_template.html'
 EMAIL_MAIL_PLAIN = 'mail_body.txt'
-EMAIL_PAGE_DOMAIN = 'http://localhost:8000/'
+EMAIL_PAGE_DOMAIN = '***REMOVED***'
 EMAIL_TOKEN_LIFE = 60 * 5
 
 GRAPH_MODELS = {
