@@ -1,0 +1,210 @@
+{% extends "../base.html" %}
+{% load static %}
+{% block title %}Dashboard{% endblock %}
+{% block css %}
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+	<link rel="stylesheet" href="{% static 'bs/dashboard/assets/vendor/nucleo/css/nucleo.css' %}" type="text/css">
+	<link rel="stylesheet" href="{% static 'bs/dashboard/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css' %}" type="text/css">
+	<link rel="stylesheet" href="{% static 'bs/dashboard/assets/vendor/fullcalendar/dist/fullcalendar.min.css' %}">
+	<link rel="stylesheet" href="{% static 'bs/dashboard/assets/vendor/sweetalert2/dist/sweetalert2.min.css' %}">
+	<link rel="stylesheet" href="{% static 'bs/dashboard/css/dashboard.css' %}" type="text/css">
+	<style type="text/css">
+		.asteriskField {
+			display: none;
+		}
+		.badge {
+			position: absolute;
+			font-size: 10px;
+			margin-left: -9px;
+			margin-top: -14px;
+			background-color: var(--orange);
+			color: white;
+		}
+	</style>
+{% endblock %}
+{% block body %}
+	<!-- Sidenav -->
+	<nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+	<div class="scrollbar-inner">
+		<!-- Brand -->
+		<div class="sidenav-header  d-flex  align-items-center">
+			<a class="navbar-brand" href="">
+				<img src="{% static 'logo/android-chrome-192x192.png' %}" class="navbar-brand-img" alt="logo">
+			</a>
+			<div class=" ml-auto ">
+				<div class="sidenav-toggler d-none d-xl-block" data-action="sidenav-unpin" data-target="#sidenav-main">
+					<div class="sidenav-toggler-inner">
+						<i class="sidenav-toggler-line"></i>
+						<i class="sidenav-toggler-line"></i>
+						<i class="sidenav-toggler-line"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="navbar-inner">
+		<!-- Collapse -->
+		<div class="collapse navbar-collapse" id="sidenav-collapse-main">
+			<!-- Nav items -->
+			<ul class="navbar-nav">
+			<li class="nav-item">
+				<a class="nav-link active active-pro" id="dashboard" href="{% url 'dashboard' %}">
+					<i class="ni ni-shop text-primary"></i>
+					<span class="nav-link-text">Dashboard</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" id="profile" href="{% url 'profile' %}">
+					<i class="ni ni-single-02 text-primary"></i>
+					<span class="nav-link-text">Profile</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" id="teams" href="{% url 'teams' %}">
+					<i class="ni ni-badge text-primary"></i>
+					<span class="nav-link-text">Teams</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" id="change_password" href="{% url 'password_change' %}">
+					<i class="ni ni-key-25 text-primary"></i>
+					<span class="nav-link-text">Change Password</span>
+				</a>
+			</li>
+			<hr class="my-3">
+			<h6 class="navbar-heading pl-4 text-muted">
+				<span class="docs-normal">----</span>
+			</h6>
+			<li class="nav-item">
+				<a class="nav-link" href="{% url 'logout' %}">
+				<i class="ni ni-user-run"></i>
+				<span class="nav-link-text">Logout</span>
+				</a>
+			</li>
+			</ul>
+		</div>
+		</div>
+	</div>
+	</nav>
+	<!-- Main content -->
+	<div class="main-content" id="panel">
+	<!-- Topnav -->
+	<nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
+		<div class="container-fluid">
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<!-- Navbar links -->
+			<ul class="navbar-nav align-items-center  ml-md-auto ">
+			<li class="nav-item d-xl-none">
+				<!-- Sidenav toggler -->
+				<div class="pr-3 sidenav-toggler sidenav-toggler-dark" data-action="sidenav-pin" data-target="#sidenav-main">
+				<div class="sidenav-toggler-inner">
+					<i class="sidenav-toggler-line"></i>
+					<i class="sidenav-toggler-line"></i>
+					<i class="sidenav-toggler-line"></i>
+				</div>
+				</div>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					{% if msg.count %}
+					<i class="ni ni-email-83"><span class='badge badge-pill shortcut-media bg-gradient-red'>{{msg.count}}</span></i>
+					{% else %}
+					<i class="ni ni-email-83"></i>
+					{% endif %}
+				</a>
+				<div class="dropdown-menu dropdown-menu-xl  dropdown-menu-right  py-0 overflow-hidden">
+				<!-- Dropdown header -->
+				{% if msg %}
+				<div class="px-3 py-3">
+					<h6 class="text-sm text-muted m-0">You have <strong class="text-primary">{{msg.count}}</strong> Message(s).</h6>
+				</div>
+				<!-- List group -->
+				{% for message in msg %}
+				<div class="list-group list-group-flush">
+					<a class="list-group-item list-group-item-action">
+					<div class="row align-items-center">
+						<div class="col ml--2">
+						<div class="d-flex justify-content-between align-items-center">
+							<div>
+							<h4 class="mb-0 text-sm">{{message.created_by.name|capfirst}}</h4>
+							</div>
+							<div class="text-right text-muted">
+							<small>{{message.created_on}}</small>
+							</div>
+						</div>
+						<p class="text-sm mb-0">{{message.message|capfirst}}</p>
+						</div>
+					</div>
+					</a>
+				</div>
+				{% endfor %}
+                {% else %}
+				<div class="px-3 py-3">
+					<h6 class="text-sm text-muted m-0">You don't have any messages</h6>
+				</div>
+				{% endif %}
+				</div>
+			</li>
+			</ul>
+			<ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
+			<li class="nav-item dropdown">
+				<a class="nav-link pr-0" role="button">
+				<div class="media align-items-center">
+					<span class="avatar avatar-sm rounded-circle shortcut-media bg-gradient-red">
+						<i class="ni ni-single-02"></i>
+					</span>
+					<div class="media-body  ml-2  d-none d-lg-block">
+					<span class="mb-0 text-sm  font-weight-bold">{{request.user.name|capfirst}}</span>
+					</div>
+				</div>
+				</a>
+			</li>
+			</ul>
+		</div>
+		</div>
+	</nav>
+	<!-- Header -->
+	<div class="header bg-primary pb-6">
+		<div class="container-fluid">
+		<div class="header-body">
+			<div class="row align-items-center py-4">
+			<div class="col-lg-6 col-7">
+				{% block header_block %}
+				<nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+				<ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+					<li class="breadcrumb-item"><a href="{% url 'dashboard' %}"><i class="fas fa-home"></i></a></li>
+					<li class="breadcrumb-item active">Dashboard</li>
+				</ol>
+				</nav>
+				{% endblock %}
+			</div>
+			</div>
+			{% block winner_block %}{% endblock %}
+		</div>
+		</div>
+	</div>
+	<!-- Page content -->
+	<div class="container-fluid mt--6">
+		{% block page_content %}{% endblock %}
+		<!-- Footer -->
+		<footer class="footer pt-0">
+		<div class="row align-items-center justify-content-lg-between">
+			<div class="col-lg-6">
+				<div class="copyright text-center  text-lg-left  text-muted">&copy; 2021 Eventia</div>
+			</div>
+		</div>
+		</footer>
+	</div>
+	</div>
+{% endblock %}
+{% block scripts %}
+	<script src="{% static 'bs/dashboard/assets/vendor/jquery/dist/jquery.min.js' %}"></script>
+	<script src="{% static 'bs/dashboard/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+	<script src="{% static 'bs/dashboard/assets/vendor/js-cookie/js.cookie.js' %}"></script>
+	<script src="{% static 'bs/dashboard/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js' %}"></script>
+	<script src="{% static 'bs/dashboard/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js' %}"></script>
+	<script src="{% static 'bs/dashboard/assets/js/dashboard.js' %}"></script>
+	<script src="{% static 'bs/dashboard/assets/js/demo.min.js' %}"></script>
+	<script src="{% static 'bs/dashboard/assets/vendor/chart.js/dist/Chart.min.js' %}"></script>
+	<script src="{% static 'bs/dashboard/assets/vendor/chart.js/dist/Chart.extension.js' %}"></script>
+	{% block special_script %}{% endblock %}
+{% endblock %}
