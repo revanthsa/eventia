@@ -1,0 +1,17 @@
+{% extends "./base_login.html" %}
+{% load static %}
+{% block title %}confirm account Success{% endblock %}
+{% block page_title %}confirm account Success{% endblock %}
+{% block page_content %}Verify your account{% endblock %}
+{% block form_title %}Your account has been succesfully verified{% endblock %}
+
+{% block form %}
+<div class="text-center">
+	{% if success %}
+	<p>Your account "{{ user.email }}" has been succesfully verified. <a href="{% url 'login' %}">Click here</a> to login to your account.</p>
+	{% else %}
+	<p>Error! your verification link has expired.</p>
+	<p><a href="mailto:***REMOVED***">Contact us</a> for more information</p>
+	{% endif %}
+</div>
+{% endblock %}

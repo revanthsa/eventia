@@ -1,0 +1,24 @@
+{% extends "./base_login.html" %}
+{% load static %}
+{% block title %}Register{% endblock %}
+{% block page_title %}Register{% endblock %}
+{% block page_content %}Participant Registeration{% endblock %}
+{% block form_title %}Register Here{% endblock %}
+{% block form %}
+<form role="form" method="POST">
+	{% csrf_token %}
+	{% load crispy_forms_tags %}
+	{{ form|crispy }}
+	<div class="text-center">
+		<button type="submit" id="submit" class="btn btn-primary my-4">Register</button>
+	</div>
+</form>
+{% endblock %}
+{% block special_script %}
+<script>
+	window.onload = function(){
+		document.getElementById("register").className = "nav-link active active-pro";
+		document.getElementById("home").className = "nav-link";
+	}
+</script>
+{% endblock %}

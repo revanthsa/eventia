@@ -1,0 +1,116 @@
+{% extends "./base_dashboard.html" %}
+{% load static %}
+{% block title %}Profile{% endblock %}
+
+{% block header_block %}
+	<h1 class="display-2 text-white">Hello, {{request.user.name}}!</h1>
+	<p class="text-white mt-0 mb-5">This is your profile page. You can update your profile here...</p>
+{% endblock %}
+
+{% block special_script %}
+<script>
+	window.onload = function(){
+		document.getElementById("profile").className = "nav-link active active-pro";
+		document.getElementById("dashboard").className = "nav-link";
+	}
+</script>
+{% endblock %}
+{% block page_content %}
+	<div class="row">
+		<div class="col-xl-4 order-xl-1">
+			<div class="card card-profile">
+				<img src="{% static 'bg.png' %}" alt="logo" class="card-img-top" style="background-size: cover; background-position: center top; max-height: 300px;">
+				<div class="row justify-content-center">
+					<div class="col-lg-3 order-lg-2">
+						<div class="card-profile-image">
+							<a href="">
+								<img src="{% static 'user.png' %}" class="rounded-circle">
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+					<div class="d-flex justify-content-between">
+						<a class="btn btn-sm btn-info  mr-4 " style="color: white;">{{request.user.college_id_number}}</a>
+						<a class="btn btn-sm btn-default float-right" style="color: white;">{{request.user.year}} year</a>
+					</div>
+				</div>
+				<div class="card-body pt-0">
+					<div class="row">
+						<div class="col">
+							<div class="card-profile-stats d-flex justify-content-center">
+								<div>
+									<span class="heading">Name</span>
+									<span class="description">{{request.user.name}}</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="text-center">
+						<div class="h5 mt-4">Email: {{request.user.email}}</div>
+						<div class="h5 mt-4">College ID: {{request.user.college_id_number}}</div>
+						<div>{{request.user.year}} year, {{request.user.course}}, {{request.user.department}}.</div>
+						<div class="h5 mt-4">{{request.user.college}}</div>
+						<div class="h5 mt-4">Last login: {{request.user.last_login}}</div>
+					</div>
+				</div>
+			</div>
+			<!-- Registered Event -->
+			{% if request.user.events.all %}
+			<div class="card">
+				<div class="card-header"><h5 class="h3 mb-0">Registered Events</h5></div>
+				<div class="card-body">
+					<div class="row align-items-center">
+						<div class="col">
+							<ul class="list-group list-group-flush list my--3">
+							{% for event in request.user.events.all %}
+								<li class="list-group-item px-0">
+								{{ event.name|capfirst }} on {{ event.date }} @ {{ event.time|time:'h:i A' }}
+								</li>
+							{% endfor %}
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% endif %}
+		</div>
+		<div class="col-xl-8 order-xl-2">
+			<div class="card">
+				<form method="POST" role="form">
+					{% if messages %}
+					{% for message in messages %}
+						<div class="alert alert-default alert-dismissible fade show" role="alert">
+							<span class="alert-text">{{ message|capfirst }}</span>
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
+						</div>
+					{% endfor %}
+					{% endif %}
+					{% for field in form %}
+					{% if field.errors %}
+						<div class="alert alert-danger alert-dismissible fade show" role="alert">
+							<span class="alert-text">{{ field.errors|striptags }}</span>
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
+						</div>
+					{% endif %}
+					{% endfor %}
+					<div class="card-header">
+						<div class="row align-items-center">
+							<div class="col-8">
+								<h3 class="mb-0">Edit profile</h3>
+							</div>
+							<div class="col-4 text-right">
+								<button type="submit" class="btn btn-sm btn-primary" style="color: white;">Update</button>
+							</div>
+						</div>
+					</div>
+					<div class="card-body">
+						{% csrf_token %}
+						{% load crispy_forms_tags %}
+						{{ form|crispy }}
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}
