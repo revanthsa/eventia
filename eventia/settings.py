@@ -160,29 +160,35 @@ PHONENUMBER_DEFAULT_REGION = 'IN'
 
 # Mail Server
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp-relay.sendinblue.com'
+# EMAIL_HOST = 'smtp-relay.sendinblue.com'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'revanthlp3@gmail.com'
-EMAIL_HOST_PASSWORD = 'xsmtpsib-d4324efcc9639992ea38695c4739ae9800faa29fe6c68364c34a91c0c588991e-kPQNW9cR2KFIDdtM'
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
+# EMAIL_HOST_USER = 'revanthlp3@gmail.com'
+EMAIL_HOST_USER = '18x039@psgtech.ac.in'
+# EMAIL_HOST_PASSWORD = 'xsmtpsib-d4324efcc9639992ea38695c4739ae9800faa29fe6c68364c34a91c0c588991e-kPQNW9cR2KFIDdtM'
+EMAIL_HOST_PASSWORD = 'Pikamarsh@rath'
+# EMAIL_USE_SSL = False
 
 
 def verified_callback(user):
     user.is_active = True
 
 EMAIL_VERIFIED_CALLBACK = verified_callback
-EMAIL_SERVER = 'smtp-relay.sendinblue.com'
+# EMAIL_SERVER = 'smtp-relay.sendinblue.com'
+EMAIL_SERVER = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_ADDRESS = 'revanthlp3@gmail.com'
-EMAIL_FROM_ADDRESS = 'revanthlp3@gmail.com'
-EMAIL_PASSWORD = 'xsmtpsib-d4324efcc9639992ea38695c4739ae9800faa29fe6c68364c34a91c0c588991e-kPQNW9cR2KFIDdtM'
+# EMAIL_ADDRESS = 'revanthlp3@gmail.com'
+EMAIL_ADDRESS = '18x039@psgtech.ac.in'
+# EMAIL_FROM_ADDRESS = 'revanthlp3@gmail.com'
+EMAIL_FROM_ADDRESS = '18x039@psgtech.ac.in'
+# EMAIL_PASSWORD = 'xsmtpsib-d4324efcc9639992ea38695c4739ae9800faa29fe6c68364c34a91c0c588991e-kPQNW9cR2KFIDdtM'
+EMAIL_PASSWORD = 'Pikamarsh@rath'
 EMAIL_MAIL_SUBJECT = 'Confirm your email'
 EMAIL_MAIL_HTML = 'mail_body.html'
 EMAIL_PAGE_TEMPLATE = 'confirm_template.html'
 EMAIL_MAIL_PLAIN = 'mail_body.txt'
-EMAIL_PAGE_DOMAIN = 'http://localhost:8000/'
+EMAIL_PAGE_DOMAIN = 'https://rathgamer.pythonanywhere.com/'
 EMAIL_TOKEN_LIFE = 60 * 5
 
 GRAPH_MODELS = {
