@@ -19730,7 +19730,6 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     top: 50%;
     margin-left: -40px;
     margin-top: -40px;
-    background: url("owl.video.play.png") no-repeat;
     cursor: pointer;
     z-index: 1;
     -webkit-backface-visibility: hidden;
@@ -34014,7 +34013,7 @@ textarea[resize="horizontal"] {
     position: absolute;
     bottom: 0;
     width: 100%;
-    background-image: url("../assets/img/patterns/wave.svg");
+
     background-repeat: repeat-x;
     background-position: bottom;
     background-size: 1450px 160px;
@@ -34042,9 +34041,6 @@ textarea[resize="horizontal"] {
     top: -10px;
 }
 
-.pattern-soft {
-    background-image: url("../assets/img/patterns/wave-soft.svg");
-}
 
 .organic-shape:not(.position-relative) {
     position: absolute;
