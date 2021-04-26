@@ -40,7 +40,7 @@ class CustomUserAdmin(UserAdmin):
 
 	def get_queryset(self, request):
 		if not request.user.is_superuser:
-			if request.user.groups.filter(name='admin').exists():
+			if request.user.groups.filter(name='event_organizer').exists():
 				return User.objects.all()
 			elif request.user.groups.filter(name='event_manager').exists():
 				event_manager_events = []
@@ -73,7 +73,7 @@ class EventAdmin(admin.ModelAdmin):
 	
 	def get_queryset(self, request):
 		if not request.user.is_superuser:
-			if request.user.groups.filter(name='admin').exists():
+			if request.user.groups.filter(name='event_organizer').exists():
 				return Event.objects.all()
 			elif request.user.groups.filter(name='event_manager').exists():
 				return Event.objects.filter(head_user=request.user)
@@ -93,7 +93,7 @@ class TeamAdmin(admin.ModelAdmin):
 
 	def get_queryset(self, request):
 		if not request.user.is_superuser:
-			if request.user.groups.filter(name='admin').exists():
+			if request.user.groups.filter(name='event_organizer').exists():
 				return Team.objects.all()
 			elif request.user.groups.filter(name='event_manager').exists():
 				event_manager_events = []
@@ -103,7 +103,7 @@ class TeamAdmin(admin.ModelAdmin):
 		return Team.objects.all()
 
 	def get_readonly_fields(self, request, obj=None):
-		if request.user.groups.filter(name='event_manager').exists() or request.user.groups.filter(name='admin').exists():
+		if request.user.groups.filter(name='event_manager').exists() or request.user.groups.filter(name='event_organizer').exists():
 			return self.eventManager_readonly_fields
 		return super(TeamAdmin, self).get_readonly_fields(request, obj)
 
@@ -115,7 +115,7 @@ class WinnerAdmin(admin.ModelAdmin):
 
 	def get_queryset(self, request):
 		if not request.user.is_superuser:
-			if request.user.groups.filter(name='admin').exists():
+			if request.user.groups.filter(name='event_organizer').exists():
 				return Winner.objects.all()
 			elif request.user.groups.filter(name='event_manager').exists():
 				event_manager_events = []

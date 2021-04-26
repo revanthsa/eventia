@@ -29,6 +29,8 @@
 	<link rel="stylesheet" href="{% static 'bs/dashboard/assets/vendor/fullcalendar/dist/fullcalendar.min.css' %}">
 	<link rel="stylesheet" href="{% static 'bs/dashboard/assets/vendor/sweetalert2/dist/sweetalert2.min.css' %}">
 	<link rel="stylesheet" href="{% static 'bs/dashboard/css/dashboard.css' %}" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Audiowide|Do+Hyeon" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
 	<style type="text/css">
 		.asteriskField {
 			display: none;
@@ -40,9 +42,7 @@
 	<nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
 		<div class="scrollbar-inner">
 			<div class="sidenav-header  d-flex  align-items-center">
-				<a class="navbar-brand" href="">
-					<img src="{% static 'logo/android-chrome-192x192.png' %}" class="navbar-brand-img" alt="logo">
-				</a>
+				<a class="navbar-brand" href="" style="font-family: 'Audiowide', cursive;">Eventia</a>
 				<div class=" ml-auto ">
 					<div class="sidenav-toggler d-none d-xl-block" data-action="sidenav-unpin" data-target="#sidenav-main">
 						<div class="sidenav-toggler-inner">
@@ -135,7 +135,7 @@
 							{% block already_login %}
 								{% if messages %}
 								{% for message in messages %}
-									<div class="alert alert-default alert-dismissible fade show" role="alert">
+									<div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
 										<span class="alert-text">{{ message|capfirst }}</span>
 										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 											<span aria-hidden="true">&times;</span>

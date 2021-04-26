@@ -20,7 +20,7 @@ class RegisterForm(UserCreationForm):
 class UpdateForm(forms.ModelForm):
 	class Meta:
 		model = get_user_model()
-		fields = ('name', 'contact', 'college_id_number', 'college', 'department', 'course', 'year', 'events')
+		fields = ('name', 'contact', 'college', 'department', 'course', 'year', 'events')
 		widgets = {'events' : forms.CheckboxSelectMultiple()}
 
 class TeamForm(forms.ModelForm):
