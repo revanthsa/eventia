@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '$8!12bd1v32qrvz)@!zet(#ea$sd%_-crp#9xf5(vwg21m72u3'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -72,10 +72,10 @@ WSGI_APPLICATION = 'eventia.wsgi.application'
 DATABASES = {
 	 'default': {
 		'ENGINE': 'django.db.backends.postgresql_psycopg2',
-		'NAME': 'ddb3a5n79ritlp',
-		'USER': 'ppmjpaxgydscti',
-		'PASSWORD': 'e1ea1c3224079c6d993dee0b5acb3e26a48ec5ac0e18e2dd77703a72a43398e1',
-		'HOST': 'ec2-52-45-73-150.compute-1.amazonaws.com',
+		'NAME': os.environ.get('DB_NAME'),
+		'USER': os.environ.get('DB_USER'),
+		'PASSWORD': os.environ.get('DB_PASSWORD'),
+		'HOST': os.environ.get('DB_HOST'),
 		'PORT': '5432',
 	 }
 }
@@ -144,20 +144,20 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp-relay.sendinblue.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'revanthlp3@gmail.com'
-EMAIL_HOST_PASSWORD = 'xsmtpsib-d4324efcc9639992ea38695c4739ae9800faa29fe6c68364c34a91c0c588991e-kPQNW9cR2KFIDdtM'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_USE_SSL = False
-DEFAULT_FROM_EMAIL = '18x039@psgtech.ac.in'
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')
 EMAIL_USE_LOCALTIME = True
 
 def verified_callback(user):
 	user.is_active = True
 
 EMAIL_VERIFIED_CALLBACK = verified_callback
-EMAIL_SERVER = 'smtp-relay.sendinblue.com'
-EMAIL_ADDRESS = 'revanthlp3@gmail.com'
-EMAIL_FROM_ADDRESS = 'revanthlp3@gmail.com'
-EMAIL_PASSWORD = 'xsmtpsib-d4324efcc9639992ea38695c4739ae9800faa29fe6c68364c34a91c0c588991e-kPQNW9cR2KFIDdtM'
+EMAIL_SERVER = os.environ.get('EMAIL_SERVER')
+EMAIL_ADDRESS = os.environ.get('EMAIL_HOST_USER')
+EMAIL_FROM_ADDRESS = os.environ.get('DEFAULT_FROM_EMAIL')
+EMAIL_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_MAIL_SUBJECT = 'Confirm your email'
 EMAIL_MAIL_HTML = 'mail_body.html'
 EMAIL_PAGE_TEMPLATE = 'confirm_template.html'
