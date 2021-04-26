@@ -31,47 +31,47 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'core',
-    'crispy_forms',
-    'phonenumber_field',
-    'django_email_verification',
-    'django_extensions',
+	'django.contrib.admin',
+	'django.contrib.auth',
+	'django.contrib.contenttypes',
+	'django.contrib.sessions',
+	'django.contrib.messages',
+	'django.contrib.staticfiles',
+	'core',
+	'crispy_forms',
+	'phonenumber_field',
+	'django_email_verification',
+	'django_extensions',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+	'django.middleware.security.SecurityMiddleware',
+	'django.contrib.sessions.middleware.SessionMiddleware',
+	'django.middleware.common.CommonMiddleware',
+	'django.middleware.csrf.CsrfViewMiddleware',
+	'django.contrib.auth.middleware.AuthenticationMiddleware',
+	'django.contrib.messages.middleware.MessageMiddleware',
+	'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 ROOT_URLCONF = 'eventia.urls'
 
 TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
+	{
+		'BACKEND': 'django.template.backends.django.DjangoTemplates',
+		'DIRS': [os.path.join(BASE_DIR, 'templates')],
+		'APP_DIRS': True,
+		'OPTIONS': {
+			'context_processors': [
+				'django.template.context_processors.debug',
+				'django.template.context_processors.request',
+				'django.contrib.auth.context_processors.auth',
+				'django.contrib.messages.context_processors.messages',
+			],
+		},
+	},
 ]
 
 WSGI_APPLICATION = 'eventia.wsgi.application'
@@ -81,10 +81,10 @@ WSGI_APPLICATION = 'eventia.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+	'default': {
+		'ENGINE': 'django.db.backends.sqlite3',
+		'NAME': BASE_DIR / 'db.sqlite3',
+	}
 }
 
 # DATABASES = {
@@ -104,18 +104,18 @@ DATABASES = {
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+	{
+		'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+	},
+	{
+		'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+	},
+	{
+		'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+	},
+	{
+		'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+	},
 ]
 
 
@@ -152,7 +152,7 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_COOKIE_AGE = 60 * 5
 SESSION_SAVE_EVERY_REQUEST = True
 
-PASSWORD_RESET_TIMEOUT = 60 * 5
+PASSWORD_RESET_TIMEOUT = 300
 
 # Default country from phone field
 PHONENUMBER_DB_FORMAT = 'E164'
@@ -168,16 +168,16 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = '***REMOVED***'
 # EMAIL_HOST_PASSWORD = '***REMOVED***'
 EMAIL_HOST_PASSWORD = '***REMOVED***'
-# EMAIL_USE_SSL = False
-
+EMAIL_USE_SSL = False
+DEFAULT_FROM_EMAIL = '***REMOVED***'
 
 def verified_callback(user):
-    user.is_active = True
+	user.is_active = True
 
 EMAIL_VERIFIED_CALLBACK = verified_callback
 # EMAIL_SERVER = '***REMOVED***'
 EMAIL_SERVER = 'smtp.gmail.com'
-EMAIL_PORT = 587
+# EMAIL_PORT = 587
 # EMAIL_ADDRESS = '***REMOVED***'
 EMAIL_ADDRESS = '***REMOVED***'
 # EMAIL_FROM_ADDRESS = '***REMOVED***'
@@ -192,6 +192,6 @@ EMAIL_PAGE_DOMAIN = '***REMOVED***'
 EMAIL_TOKEN_LIFE = 60 * 5
 
 GRAPH_MODELS = {
-    'all_applications':True,
-    'group_models':True,
+	'all_applications':True,
+	'group_models':True,
 }

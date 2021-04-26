@@ -8,6 +8,8 @@
 	<link rel="stylesheet" href="{% static 'bs/dashboard/assets/vendor/fullcalendar/dist/fullcalendar.min.css' %}">
 	<link rel="stylesheet" href="{% static 'bs/dashboard/assets/vendor/sweetalert2/dist/sweetalert2.min.css' %}">
 	<link rel="stylesheet" href="{% static 'bs/dashboard/css/dashboard.css' %}" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Audiowide|Do+Hyeon" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
 	<style type="text/css">
 		.asteriskField {
 			display: none;
@@ -28,9 +30,10 @@
 	<div class="scrollbar-inner">
 		<!-- Brand -->
 		<div class="sidenav-header  d-flex  align-items-center">
-			<a class="navbar-brand" href="">
-				<img src="{% static 'logo/android-chrome-192x192.png' %}" class="navbar-brand-img" alt="logo">
-			</a>
+			<!-- <a class="navbar-brand" href="">
+				<img src="{% static 'bg.svg' %}" class="navbar-brand-img mh-100" alt="logo">
+			</a> -->
+			<a class="navbar-brand" href="" style="font-family: 'Audiowide', cursive;">Eventia</a>
 			<div class=" ml-auto ">
 				<div class="sidenav-toggler d-none d-xl-block" data-action="sidenav-unpin" data-target="#sidenav-main">
 					<div class="sidenav-toggler-inner">
@@ -147,7 +150,7 @@
 			</ul>
 			<ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
 			<li class="nav-item dropdown">
-				<a class="nav-link pr-0" role="button">
+				<a class="nav-link pr-0" role="button" href="{% url 'profile' %}">
 				<div class="media align-items-center">
 					<span class="avatar avatar-sm rounded-circle shortcut-media bg-gradient-red">
 						<i class="ni ni-single-02"></i>
