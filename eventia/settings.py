@@ -195,3 +195,6 @@ GRAPH_MODELS = {
 	'all_applications':True,
 	'group_models':True,
 }
+
+import django_heroku
+django_heroku.settings(locals())
