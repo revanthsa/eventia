@@ -25,8 +25,10 @@ INSTALLED_APPS = [
 	'django.contrib.contenttypes',
 	'django.contrib.sessions',
 	'django.contrib.messages',
+	'cloudinary_storage',
 	'django.contrib.staticfiles',
 	'core',
+	'cloudinary',
 	'crispy_forms',
 	'phonenumber_field',
 	'django_email_verification',
@@ -169,6 +171,16 @@ GRAPH_MODELS = {
 	'all_applications':True,
 	'group_models':True,
 }
+
+# A list of all the people who get code error notifications, when DEBUG=False
+ADMINS = [('Revanth', 'revanthlp3@gmail.com'), ('Sree Varshini', 'sreevarshini13@gmail.com')]
+
+CLOUDINARY_STORAGE = {
+	'CLOUD_NAME': os.environ.get('CLOUD_NAME'),
+	'API_KEY': os.environ.get('API_KEY'),
+	'API_SECRET': os.environ.get('API_SECRET'),
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 import django_heroku
 django_heroku.settings(locals())
