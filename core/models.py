@@ -134,7 +134,7 @@ class User(AbstractUser):
 	college_id_number = models.CharField(_('college roll number'), max_length=20, unique=True)
 	college = models.CharField(_('college'), max_length=150)
 	department = models.CharField(_('department'), max_length=60)
-	course = models.CharField(_('course'), max_length=20)
+	course = models.CharField(_('course'), max_length=60)
 	year = models.CharField(_('year'), choices=YEAR_CHOICES, max_length=3)
 	events = models.ManyToManyField(Event, blank=True)
 
