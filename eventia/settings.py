@@ -175,12 +175,12 @@ GRAPH_MODELS = {
 # A list of all the people who get code error notifications, when DEBUG=False
 ADMINS = [('Revanth', 'revanthlp3@gmail.com'), ('Sree Varshini', 'sreevarshini13@gmail.com')]
 
+import django_heroku
+django_heroku.settings(locals())
+
 CLOUDINARY_STORAGE = {
 	'CLOUD_NAME': os.environ.get('CLOUD_NAME'),
 	'API_KEY': os.environ.get('API_KEY'),
 	'API_SECRET': os.environ.get('API_SECRET'),
 }
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
-import django_heroku
-django_heroku.settings(locals())
