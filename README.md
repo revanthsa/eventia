@@ -1,6 +1,6 @@
 > EVENTIA
 
-1. Eventia is a web-based event scheduling application for colleges. This is a Django framework-based web application.
+Eventia is a web-based event scheduling application for colleges. This is a Django framework-based web application.
 
 > OVERVIEW
 
